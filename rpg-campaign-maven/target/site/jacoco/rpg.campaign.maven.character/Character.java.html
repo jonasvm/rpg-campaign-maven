@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Character.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg-campaign-maven</a> &gt; <a href="index.source.html" class="el_package">rpg.campaign.maven.character</a> &gt; <span class="el_source">Character.java</span></div><h1>Character.java</h1><pre class="source lang-java linenums">package rpg.campaign.maven.character;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * 
+ * The Abstract Class Character represents a generic form of a 3D&amp;T - Defensores
+ * de Toquio 3 Edição Alpha's character.
+ * 
+ * Any character have the following attributes: name, points, strength,
+ * dexterity, endurance, armor, fire power, level, hit points, magic points,
+ * advantages, disadvantages, damage types, known spells, money, items and a
+ * background history.
+ * 
+ * A character might be of two types: Playable Character or Non Playable
+ * Character. The Playable character is the one owned by a Player. The Non
+ * Playable Character is owned by a campaign and differently of the Playable
+ * one, it didn't have experience points.
+ * 
+ * The level attribute is optional in this system, so it is required in
+ * character creation but it is not mandatory.
+ * 
+ * @author jonas
+ * @version 1.4
+ * @since 02/10/2019
+ *
+ */
+public abstract class Character {
+
+	private String name;
+	private int points;
+	private int strength;
+	private int dexterity;
+	private int endurance;
+	private int armor;
+	private int firePower;
+	private int level;
+	private int hitPoints;
+	private int magicPoints;
+<span class="nc" id="L41">	private Set&lt;String&gt; advantages = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L42">	private Set&lt;String&gt; disadvantages = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L43">	private Set&lt;String&gt; damageTypes = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L44">	private Set&lt;String&gt; knownSpells = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L45">	private Set&lt;String&gt; moneyAndItems = new HashSet&lt;&gt;();</span>
+
+	/**
+	 * This is the class constructor. It is responsible to initialize all
+	 * character's variables when it is created.
+	 * 
+	 * @param name          String
+	 * @param points        int
+	 * @param strength      int
+	 * @param dexterity     int
+	 * @param endurance     int
+	 * @param armor         int
+	 * @param firePower     int
+	 * @param level         int
+	 * @param hitPoints     int
+	 * @param magicPoints   int
+	 * @param advantages    Set&lt;String&gt;
+	 * @param disadvantages Set&lt;String&gt;
+	 * @param damageTypes   Set&lt;String&gt;
+	 * @param knownSpells   Set&lt;String&gt;
+	 * @param moneyAndItems Set&lt;String&gt;
+	 * 
+	 * @author jonas
+	 * @param points
+	 * @since 07/10/2019
+	 *
+	 */
+	public Character(String name, int points, int strength, int dexterity, int endurance, int armor, int firePower,
+			int level, int hitPoints, int magicPoints, Set&lt;String&gt; advantages, Set&lt;String&gt; disadvantages,
+<span class="nc" id="L74">			Set&lt;String&gt; damageTypes, Set&lt;String&gt; knownSpells, Set&lt;String&gt; moneyAndItems) {</span>
+
+<span class="nc" id="L76">		this.name = name;</span>
+<span class="nc" id="L77">		this.points = points;</span>
+<span class="nc" id="L78">		this.strength = strength;</span>
+<span class="nc" id="L79">		this.dexterity = dexterity;</span>
+<span class="nc" id="L80">		this.endurance = endurance;</span>
+<span class="nc" id="L81">		this.armor = armor;</span>
+<span class="nc" id="L82">		this.firePower = firePower;</span>
+<span class="nc" id="L83">		this.level = level;</span>
+<span class="nc" id="L84">		this.hitPoints = hitPoints;</span>
+<span class="nc" id="L85">		this.magicPoints = magicPoints;</span>
+<span class="nc" id="L86">		this.advantages = advantages;</span>
+<span class="nc" id="L87">		this.disadvantages = disadvantages;</span>
+<span class="nc" id="L88">		this.damageTypes = damageTypes;</span>
+<span class="nc" id="L89">		this.knownSpells = knownSpells;</span>
+<span class="nc" id="L90">		this.moneyAndItems = moneyAndItems;</span>
+
+<span class="nc" id="L92">	}</span>
+
+	/**
+	 * The main function of Abstract Method printSpreadsheat() is to display the
+	 * character characteristics.
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public abstract StringBuilder printSpreadsheat();
+
+	/**
+	 * Method getName(). Responsible to get character's name.
+	 * 
+	 * @return String name
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public String getName() {
+<span class="nc" id="L114">		return name;</span>
+	}
+
+	/**
+	 * Method getPoints(). Responsible to get character's points.
+	 * 
+	 * @return Int points
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getPoints() {
+<span class="nc" id="L127">		return points;</span>
+	}
+
+	/**
+	 * Method increasePoints(). Responsible to increase character's points.
+	 * 
+	 * @param pointsToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increasePoints(int pointsToIncrease) {
+<span class="nc" id="L140">		this.points += pointsToIncrease;</span>
+<span class="nc" id="L141">	}</span>
+
+	/**
+	 * Method decreasePoints(). Responsible to decrease character's points.
+	 * 
+	 * @param pointsToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreasePoints(int pointsToDecrease) {
+<span class="nc" id="L153">		this.points -= pointsToDecrease;</span>
+<span class="nc" id="L154">	}</span>
+
+	/**
+	 * Method getStrength(). Responsible to get character's strength.
+	 * 
+	 * @return Int strength
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getStrength() {
+<span class="nc" id="L166">		return strength;</span>
+	}
+
+	/**
+	 * Method increaseStrength(). Responsible to increase character's strength.
+	 * 
+	 * @param strengthToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseStrength(int strengthToIncrease) {
+<span class="nc" id="L179">		this.strength += strengthToIncrease;</span>
+<span class="nc" id="L180">	}</span>
+
+	/**
+	 * Method decreaseStrength(). Responsible to decrease character's strength.
+	 * 
+	 * @param strengthToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseStrength(int strengthToDecrease) {
+<span class="nc" id="L192">		this.strength -= strengthToDecrease;</span>
+<span class="nc" id="L193">	}</span>
+
+	/**
+	 * Method getDexterity(). Responsible to get character's dexterity.
+	 * 
+	 * @return Int dexterity
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getDexterity() {
+<span class="nc" id="L205">		return dexterity;</span>
+	}
+
+	/**
+	 * Method increaseDexterity(). Responsible to increase character's dexterity.
+	 * 
+	 * @param dexterityToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseDexterity(int dexterityToIncrease) {
+<span class="nc" id="L218">		this.dexterity += dexterityToIncrease;</span>
+<span class="nc" id="L219">	}</span>
+
+	/**
+	 * Method decreaseDexterity(). Responsible to decrease character's dexterity.
+	 * 
+	 * @param dexterityToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseDexterity(int dexterityToDecrease) {
+<span class="nc" id="L231">		this.dexterity -= dexterityToDecrease;</span>
+<span class="nc" id="L232">	}</span>
+
+	/**
+	 * Method getEndurance(). Responsible to get character's endurance.
+	 * 
+	 * @return Int endurance
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getEndurance() {
+<span class="nc" id="L244">		return endurance;</span>
+	}
+
+	/**
+	 * Method increaseEndurance(). Responsible to increase character's endurance.
+	 * 
+	 * @param enduranceToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseEndurance(int enduranceToIncrease) {
+<span class="nc" id="L257">		this.endurance += enduranceToIncrease;</span>
+<span class="nc" id="L258">	}</span>
+
+	/**
+	 * Method decreaseEndurance(). Responsible to decrease character's endurance.
+	 * 
+	 * @param enduranceToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseEndurance(int enduranceToDecrease) {
+<span class="nc" id="L270">		this.endurance -= enduranceToDecrease;</span>
+<span class="nc" id="L271">	}</span>
+
+	/**
+	 * Method getArmor(). Responsible to get character's armor.
+	 * 
+	 * @return Int armor
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getArmor() {
+<span class="nc" id="L283">		return armor;</span>
+	}
+
+	/**
+	 * Method increaseArmor(). Responsible to increase character's armor.
+	 * 
+	 * @param armorToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseArmor(int armorToIncrease) {
+<span class="nc" id="L296">		this.armor += armorToIncrease;</span>
+<span class="nc" id="L297">	}</span>
+
+	/**
+	 * Method decreaseArmor(). Responsible to decrease character's armor.
+	 * 
+	 * @param armorToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseArmor(int armorToDecrease) {
+<span class="nc" id="L309">		this.armor -= armorToDecrease;</span>
+<span class="nc" id="L310">	}</span>
+
+	/**
+	 * Method getFirePower(). Responsible to get character's firePower.
+	 * 
+	 * @return Int firePower
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getFirePower() {
+<span class="nc" id="L322">		return firePower;</span>
+	}
+
+	/**
+	 * Method increaseFirePower(). Responsible to increase character's firePower.
+	 * 
+	 * @param firePowerToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseFirePower(int firePowerToIncrease) {
+<span class="nc" id="L335">		this.firePower += firePowerToIncrease;</span>
+<span class="nc" id="L336">	}</span>
+
+	/**
+	 * Method decreaseFirePower(). Responsible to decrease character's firePower.
+	 * 
+	 * @param firePowerToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreasefirePower(int firePowerToDecrease) {
+<span class="nc" id="L348">		this.firePower -= firePowerToDecrease;</span>
+<span class="nc" id="L349">	}</span>
+
+	/**
+	 * Method getLevel(). Responsible to get character's level.
+	 * 
+	 * @return int level
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	protected int getLevel() {
+<span class="nc" id="L361">		return level;</span>
+	}
+
+	/**
+	 * Method increaseLevel(). Responsible to increase character's level.
+	 * 
+	 * @param levelsToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void increaseLevel(int levelsToIncrease) {
+<span class="nc" id="L374">		this.level += levelsToIncrease;</span>
+<span class="nc" id="L375">	}</span>
+
+	/**
+	 * Method decreaseLevel(). Responsible to decrease character's level.
+	 * 
+	 * @param levelsToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void decreaseLevel(int levelsToDecrease) {
+<span class="nc" id="L387">		this.level -= levelsToDecrease;</span>
+<span class="nc" id="L388">	}</span>
+
+	/**
+	 * Method getHitPoints(). Responsible to get character's hit points.
+	 * 
+	 * @return int hitPoints
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	protected int getHitPoints() {
+<span class="nc" id="L400">		return hitPoints;</span>
+	}
+
+	/**
+	 * Method increaseHitPoints(). Responsible to increase character's hit points.
+	 * 
+	 * @param hitPointsToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void increaseHitPoints(int hitPointsToIncrease) {
+<span class="nc" id="L413">		this.hitPoints += hitPointsToIncrease;</span>
+<span class="nc" id="L414">	}</span>
+
+	/**
+	 * Method decreaseHitPoints(). Responsible to decrease character's hit points.
+	 * 
+	 * @param hitPointsToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void decreaseHitPoints(int hitPointsToDecrease) {
+<span class="nc" id="L426">		this.hitPoints -= hitPointsToDecrease;</span>
+<span class="nc" id="L427">	}</span>
+
+	/**
+	 * Method getMagicPoints(). Responsible to get character's magic points.
+	 * 
+	 * @return int magicPoints
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected int getMagicPoints() {
+<span class="nc" id="L439">		return magicPoints;</span>
+	}
+
+	/**
+	 * Method increaseMagicPoints(). Responsible to increase character's magic
+	 * points.
+	 * 
+	 * @param magicPointsToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseMagicPoints(int magicPointsToIncrease) {
+<span class="nc" id="L453">		this.magicPoints += magicPointsToIncrease;</span>
+<span class="nc" id="L454">	}</span>
+
+	/**
+	 * Method decreaseMagicPoints(). Responsible to decrease character's magic
+	 * points.
+	 * 
+	 * @param magicPointsToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseMagicPoints(int magicPointsToDecrease) {
+<span class="nc" id="L467">		this.magicPoints -= magicPointsToDecrease;</span>
+<span class="nc" id="L468">	}</span>
+
+	/**
+	 * Method getAdavantages(). Responsible to get character's advantages.
+	 * 
+	 * @return Set&lt;String&gt; advantages
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected Set&lt;String&gt; getAdvantages() {
+<span class="nc" id="L480">		return advantages;</span>
+	}
+
+	/**
+	 * Method increaseAdvantages(). Responsible to increase character's advantages.
+	 * 
+	 * @param advantagesToIncrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseAdvantages(String advantageToIncrease) {
+<span class="nc" id="L493">		this.advantages.add(advantageToIncrease);</span>
+<span class="nc" id="L494">	}</span>
+
+	/**
+	 * Method decreaseAdvantages(). Responsible to decrease character's advantages.
+	 * 
+	 * @param advantagesToDecrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseAdvantages(String advantagesToDecrease) {
+<span class="nc" id="L506">		this.advantages.remove(advantagesToDecrease);</span>
+<span class="nc" id="L507">	}</span>
+
+	/**
+	 * Method getDisadavantages(). Responsible to get character's disadvantages.
+	 * 
+	 * @return Set&lt;String&gt; disadvantages
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected Set&lt;String&gt; getDisadvangates() {
+<span class="nc" id="L519">		return disadvantages;</span>
+	}
+
+	/**
+	 * Method increaseDisadvantages(). Responsible to increase character's
+	 * disadvantages.
+	 * 
+	 * @param disadvantagesToIncrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseDisadvantages(String disadvantageToIncrease) {
+<span class="nc" id="L533">		this.disadvantages.add(disadvantageToIncrease);</span>
+<span class="nc" id="L534">	}</span>
+
+	/**
+	 * Method decreaseDisadvantages(). Responsible to decrease character's
+	 * disadvantages.
+	 * 
+	 * @param disaadvantagesToDecrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseDisadvantages(String disadvantagesToDecrease) {
+<span class="nc" id="L547">		this.disadvantages.remove(disadvantagesToDecrease);</span>
+<span class="nc" id="L548">	}</span>
+
+	/**
+	 * Method getDamageTypes(). Responsible to get character's damage types.
+	 * 
+	 * @return Set&lt;String&gt; damageTypes
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected Set&lt;String&gt; getDamageTypes() {
+<span class="nc" id="L560">		return damageTypes;</span>
+	}
+
+	/**
+	 * Method increaseDamageTypes(). Responsible to increase character's damage
+	 * types.
+	 * 
+	 * @param damageTypeToIncrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseDamageTypes(String damageTypeToIncrease) {
+<span class="nc" id="L574">		this.damageTypes.add(damageTypeToIncrease);</span>
+<span class="nc" id="L575">	}</span>
+
+	/**
+	 * Method decreaseDamageTypes(). Responsible to decrease character's damage
+	 * types.
+	 * 
+	 * @param damageTypeToDecrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseDamageTypes(String damageTypeToDecrease) {
+<span class="nc" id="L588">		this.damageTypes.remove(damageTypeToDecrease);</span>
+<span class="nc" id="L589">	}</span>
+
+	/**
+	 * Method getKnownSpells(). Responsible to get character's known spells.
+	 * 
+	 * @return Set&lt;String&gt; knownSpells
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected Set&lt;String&gt; getKnownSpells() {
+<span class="nc" id="L601">		return knownSpells;</span>
+	}
+
+	/**
+	 * Method increaseKnownSpells(). Responsible to increase character's known
+	 * spells.
+	 * 
+	 * @param knownSpellsToIncrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseKnownSpells(String knownSpellsToIncrease) {
+<span class="nc" id="L615">		this.knownSpells.add(knownSpellsToIncrease);</span>
+<span class="nc" id="L616">	}</span>
+
+	/**
+	 * Method decreaseKnownSpells(). Responsible to decrease character's known
+	 * spells.
+	 * 
+	 * @param knownSpellsToDecrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseKnownSpells(String knownSpellsToDecrease) {
+<span class="nc" id="L629">		this.knownSpells.remove(knownSpellsToDecrease);</span>
+<span class="nc" id="L630">	}</span>
+
+	/**
+	 * Method getMoneyAndItems(). Responsible to get character's money and items.
+	 * 
+	 * @return Set&lt;String&gt; moneyAndItems
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	protected Set&lt;String&gt; getMoneyAndItems() {
+<span class="nc" id="L642">		return moneyAndItems;</span>
+	}
+
+	/**
+	 * Method increaseMoneyAndItems(). Responsible to increase character's money and
+	 * items.
+	 * 
+	 * @param moneyAndItemsToIncrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void increaseMoneyAndItems(String moneyAndItemsToIncrease) {
+<span class="nc" id="L656">		this.moneyAndItems.add(moneyAndItemsToIncrease);</span>
+<span class="nc" id="L657">	}</span>
+
+	/**
+	 * Method decreaseMoneyAndItems(). Responsible to decrease character's money and
+	 * items.
+	 * 
+	 * @param moneyAndItemsToDecrease String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void decreaseMoneyAndItems(String moneyAndItemsToDecrease) {
+<span class="nc" id="L670">		this.moneyAndItems.remove(moneyAndItemsToDecrease);</span>
+<span class="nc" id="L671">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

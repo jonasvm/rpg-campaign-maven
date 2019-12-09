@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Campaign.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg-campaign-maven</a> &gt; <a href="index.source.html" class="el_package">rpg.campaign.maven.campaign</a> &gt; <span class="el_source">Campaign.java</span></div><h1>Campaign.java</h1><pre class="source lang-java linenums">package rpg.campaign.maven.campaign;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import rpg.campaign.maven.character.NonPlayableCharacter;
+import rpg.campaign.maven.user.DungeonMaster;
+import rpg.campaign.maven.user.Player;
+
+/**
+ * 
+ * The Class Campaign represents a campaign. The campaign contains a name, a
+ * dungeon master, a list of players and a list of non playable characters. The
+ * campaign is the association of all elements necessary to start a game. The
+ * responsibility of this class is to hold the updated list of characters and
+ * non playable characters, that are the references to update the characters and
+ * non playable characters statistics.
+ * 
+ * @author jonas
+ * @version 1.4
+ * @since 02/10/2019
+ *
+ */
+public class Campaign {
+
+	private String campaignName;
+	private DungeonMaster dungeonMaster;
+<span class="nc" id="L29">	private List&lt;NonPlayableCharacter&gt; nonPlayableCharacterList = new ArrayList&lt;NonPlayableCharacter&gt;();</span>
+<span class="nc" id="L30">	private List&lt;Player&gt; playerList = new ArrayList&lt;Player&gt;();</span>
+
+	/**
+	 * This is the class constructor. It is responsible to initialize variables name
+	 * and dungeon master when a campaign is created.
+	 * 
+	 * @param dungeonMaster DungeonMaster
+	 * @param campaignName  String
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+<span class="nc" id="L43">	public Campaign(DungeonMaster dungeonMaster, String campaignName) {</span>
+<span class="nc" id="L44">		this.campaignName = campaignName;</span>
+<span class="nc" id="L45">		this.dungeonMaster = dungeonMaster;</span>
+<span class="nc" id="L46">	}</span>
+
+	/**
+	 * Method getName(). Responsible to get campaign's name.
+	 * 
+	 * @return String campaignName
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public String getName() {
+<span class="nc" id="L58">		return campaignName;</span>
+	}
+
+	/**
+	 * Method getDungeonMaster(). Responsible to get campaign's dungeon master.
+	 * 
+	 * @return DungeonMaster dungeonMaster
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public DungeonMaster getDungeonMaster() {
+<span class="nc" id="L71">		return dungeonMaster;</span>
+	}
+
+	/**
+	 * Methodget PlayerList(). Responsible to get campaign's player list.
+	 * 
+	 * @return List Player
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public List&lt;Player&gt; getPlayerList() {
+<span class="nc" id="L84">		return playerList;</span>
+	}
+
+	/**
+	 * Method getNonPlayableCharacterList(). Responsible to get campaign's non
+	 * playable character list.
+	 * 
+	 * @return List NonPlayableCharacter
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public List&lt;NonPlayableCharacter&gt; getNonPlayableCharacterList() {
+<span class="nc" id="L98">		return nonPlayableCharacterList;</span>
+	}
+
+	/**
+	 * Method populateNpcList(). Responsible to populate campaign's non playable
+	 * character list.
+	 * 
+	 * @param name          String
+	 * @param points        int
+	 * @param strength      int
+	 * @param dexterity     int
+	 * @param endurance     int
+	 * @param armor         int
+	 * @param firePower     int
+	 * @param level         int
+	 * @param hitPoints     int
+	 * @param magicPoints   int
+	 * @param advantages    Set&lt;String&gt;
+	 * @param disadvantages Set&lt;String&gt;
+	 * @param damageTypes   Set&lt;String&gt;
+	 * @param knownSpells   Set&lt;String&gt;
+	 * @param moneyAndItems Set&lt;String&gt;
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void populateNpcList(String characterName, int points, int strength, int dexterity, int endurance, int armor,
+			int firepower, int level, int hitPoints, int magicPoints, Set&lt;String&gt; advantages, Set&lt;String&gt; disadvantages,
+			Set&lt;String&gt; damageTypes, Set&lt;String&gt; knownSpells, Set&lt;String&gt; moneyAndItems) {
+
+<span class="nc" id="L129">		nonPlayableCharacterList.add(</span>
+				new NonPlayableCharacter(characterName, points, strength, dexterity, endurance, armor, firepower, level,
+						hitPoints, magicPoints, advantages, disadvantages, damageTypes, knownSpells, moneyAndItems));
+
+<span class="nc" id="L133">	}</span>
+
+	/**
+	 * Method populatePlayerList(). Responsible to populate campaign's player list.
+	 * 
+	 * @param player Player
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void populatePlayerList(Player player) {
+<span class="nc" id="L145">		playerList.add(player);</span>
+<span class="nc" id="L146">	}</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

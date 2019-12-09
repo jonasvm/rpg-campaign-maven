@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CliUserInterface.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg-campaign-maven</a> &gt; <a href="index.source.html" class="el_package">rpg.campaign.maven.test</a> &gt; <span class="el_source">CliUserInterface.java</span></div><h1>CliUserInterface.java</h1><pre class="source lang-java linenums">package rpg.campaign.maven.test;
+
+import java.util.HashSet;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Set;
+
+import rpg.campaign.maven.campaign.Campaign;
+import rpg.campaign.maven.controller.GameController;
+import rpg.campaign.maven.ui.UserInterface;
+import rpg.campaign.maven.user.DungeonMaster;
+
+/**
+ * 
+ * @author jonas
+ * @version 1.4
+ * @since 07/10/2019
+ *
+ */
+<span class="nc" id="L20">public class CliUserInterface implements UserInterface {</span>
+
+<span class="nc" id="L22">	static Scanner s = new Scanner(System.in);</span>
+<span class="nc" id="L23">	static GameController gc = new GameController();</span>
+<span class="nc" id="L24">	static int option = 0;</span>
+
+	public static void menu() {
+<span class="nc" id="L27">		System.out.println(&quot;Please select an option!&quot;);</span>
+<span class="nc" id="L28">		System.out.println(&quot; 1 - Create Dungeon Master&quot;);</span>
+<span class="nc" id="L29">		System.out.println(&quot; 2 - Create Campaign&quot;);</span>
+<span class="nc" id="L30">		System.out.println(&quot; 3 - Create Player&quot;);</span>
+<span class="nc" id="L31">		System.out.println(&quot; 4 - Create NPC&quot;);</span>
+<span class="nc" id="L32">		System.out.println(&quot; 5 - Show Campaign Details&quot;);</span>
+<span class="nc" id="L33">		System.out.println(&quot; 6 - Show Character&quot;);</span>
+<span class="nc" id="L34">		System.out.println(&quot; 7 - Show Character List&quot;);</span>
+<span class="nc" id="L35">		System.out.println(&quot; 8 - Show NPC&quot;);</span>
+<span class="nc" id="L36">		System.out.println(&quot; 9 - Show NPC List&quot;);</span>
+<span class="nc" id="L37">		System.out.println(&quot;10 - Increase Character Points&quot;);</span>
+<span class="nc" id="L38">		System.out.println(&quot;11 - Decrease Character Points&quot;);</span>
+<span class="nc" id="L39">		System.out.println(&quot;12 - Increase Character Strength&quot;);</span>
+<span class="nc" id="L40">		System.out.println(&quot;13 - Decrease Character Strength&quot;);</span>
+<span class="nc" id="L41">		System.out.println(&quot;14 - Increase Character Dexterity&quot;);</span>
+<span class="nc" id="L42">		System.out.println(&quot;15 - Decrease Character Dexterity&quot;);</span>
+<span class="nc" id="L43">		System.out.println(&quot;16 - Increase Character Endurance&quot;);</span>
+<span class="nc" id="L44">		System.out.println(&quot;17 - Decrease Character Endurance&quot;);</span>
+<span class="nc" id="L45">		System.out.println(&quot;18 - Increase Character Armor&quot;);</span>
+<span class="nc" id="L46">		System.out.println(&quot;19 - Decrease Character Armor&quot;);</span>
+<span class="nc" id="L47">		System.out.println(&quot;20 - Increase Character Fire Power&quot;);</span>
+<span class="nc" id="L48">		System.out.println(&quot;21 - Decrease Character Fire Power&quot;);</span>
+<span class="nc" id="L49">		System.out.println(&quot;22 - Increase Character Level&quot;);</span>
+<span class="nc" id="L50">		System.out.println(&quot;23 - Decrease Character Level&quot;);</span>
+<span class="nc" id="L51">		System.out.println(&quot;24 - Increase Character Hit Points&quot;);</span>
+<span class="nc" id="L52">		System.out.println(&quot;25 - Decrease Character Hit Points&quot;);</span>
+<span class="nc" id="L53">		System.out.println(&quot;26 - Increase Character Magic Points&quot;);</span>
+<span class="nc" id="L54">		System.out.println(&quot;27 - Decrease Character Magic Points&quot;);</span>
+<span class="nc" id="L55">		System.out.println(&quot;28 - Increase Character Advantages&quot;);</span>
+<span class="nc" id="L56">		System.out.println(&quot;29 - Decrease Character Advantages&quot;);</span>
+<span class="nc" id="L57">		System.out.println(&quot;30 - Increase Character Disadvantages&quot;);</span>
+<span class="nc" id="L58">		System.out.println(&quot;31 - Decrease Character Disadavantages&quot;);</span>
+<span class="nc" id="L59">		System.out.println(&quot;32 - Increase Character Damage Types&quot;);</span>
+<span class="nc" id="L60">		System.out.println(&quot;33 - Decrease Character Damage Types&quot;);</span>
+<span class="nc" id="L61">		System.out.println(&quot;34 - Increase Character Known Spells&quot;);</span>
+<span class="nc" id="L62">		System.out.println(&quot;35 - Decrease Character Known Spells&quot;);</span>
+<span class="nc" id="L63">		System.out.println(&quot;36 - Increase Character Money and Items&quot;);</span>
+<span class="nc" id="L64">		System.out.println(&quot;37 - Decrease Character Money and Items&quot;);</span>
+<span class="nc" id="L65">		System.out.println(&quot;38 - Increase Character Experience&quot;);</span>
+<span class="nc" id="L66">		System.out.println(&quot;39 - Decrease Character Experience&quot;);</span>
+<span class="nc" id="L67">		System.out.println(&quot;40 - Create a background for a character&quot;);</span>
+<span class="nc" id="L68">		System.out.println(&quot;41 - Authenticate Player&quot;);</span>
+<span class="nc" id="L69">		System.out.println(&quot;42 - Authenticate Dungeon Master&quot;);</span>
+<span class="nc" id="L70">		System.out.println(&quot;43 - Change user's email&quot;);</span>
+<span class="nc" id="L71">		System.out.println(&quot;44 - Change user's password&quot;);</span>
+<span class="nc" id="L72">		System.out.println(&quot;45 - Instructions&quot;);</span>
+<span class="nc" id="L73">		System.out.println(&quot;46 - Leave the system&quot;);</span>
+
+		try {
+<span class="nc" id="L76">			option = s.nextInt();</span>
+<span class="nc" id="L77">		} catch (InputMismatchException e) {</span>
+<span class="nc" id="L78">			System.out.println(&quot;Invalid entry - this field must be a number!&quot;);</span>
+<span class="nc" id="L79">			System.out.println(&quot;Leaving the program due to exception!&quot;);</span>
+<span class="nc" id="L80">			option = 0;</span>
+<span class="nc" id="L81">		}</span>
+<span class="nc" id="L82">		System.out.println();</span>
+<span class="nc" id="L83">	}</span>
+
+	public static String getUiName(int type) {
+<span class="nc" id="L86">		String name = null;</span>
+<span class="nc bnc" id="L87" title="All 5 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L89">			System.out.println(&quot;Please tipe the dungeon master's name&quot;);</span>
+<span class="nc" id="L90">			break;</span>
+		case 2:
+<span class="nc" id="L92">			System.out.println(&quot;Please tipe the player's name&quot;);</span>
+<span class="nc" id="L93">			break;</span>
+		case 3:
+<span class="nc" id="L95">			System.out.println(&quot;Please tipe the character's name&quot;);</span>
+<span class="nc" id="L96">			break;</span>
+		case 4:
+<span class="nc" id="L98">			System.out.println(&quot;Please tipe the npc's name&quot;);</span>
+<span class="nc" id="L99">			break;</span>
+		default:
+<span class="nc" id="L101">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L105">			name = s.next();</span>
+<span class="nc" id="L106">		} catch (Exception ex) {</span>
+<span class="nc" id="L107">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L108">		}</span>
+<span class="nc" id="L109">		return name;</span>
+	}
+
+	public static String getUiAdvantages(int type) {
+<span class="nc" id="L113">		String advantage = null;</span>
+<span class="nc bnc" id="L114" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L116">			System.out.println(&quot;Please tipe the player's advantage&quot;);</span>
+<span class="nc" id="L117">			break;</span>
+		case 2:
+<span class="nc" id="L119">			System.out.println(&quot;Please tipe the character's advantage&quot;);</span>
+<span class="nc" id="L120">			break;</span>
+		default:
+<span class="nc" id="L122">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L126">			advantage = s.next();</span>
+<span class="nc" id="L127">		} catch (Exception ex) {</span>
+<span class="nc" id="L128">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L129">		}</span>
+<span class="nc" id="L130">		return advantage;</span>
+	}
+
+	public static String getUiDisadvantages(int type) {
+<span class="nc" id="L134">		String disadvantage = null;</span>
+<span class="nc bnc" id="L135" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L137">			System.out.println(&quot;Please tipe the player's disadvantage&quot;);</span>
+<span class="nc" id="L138">			break;</span>
+		case 2:
+<span class="nc" id="L140">			System.out.println(&quot;Please tipe the character's disadvantage&quot;);</span>
+<span class="nc" id="L141">			break;</span>
+		default:
+<span class="nc" id="L143">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L147">			disadvantage = s.next();</span>
+<span class="nc" id="L148">		} catch (Exception ex) {</span>
+<span class="nc" id="L149">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L150">		}</span>
+<span class="nc" id="L151">		return disadvantage;</span>
+	}
+
+	public static String getUiDamageTypes(int type) {
+<span class="nc" id="L155">		String damageType = null;</span>
+<span class="nc bnc" id="L156" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L158">			System.out.println(&quot;Please tipe the player's damage type&quot;);</span>
+<span class="nc" id="L159">			break;</span>
+		case 2:
+<span class="nc" id="L161">			System.out.println(&quot;Please tipe the character's damage type&quot;);</span>
+<span class="nc" id="L162">			break;</span>
+		default:
+<span class="nc" id="L164">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L168">			damageType = s.next();</span>
+<span class="nc" id="L169">		} catch (Exception ex) {</span>
+<span class="nc" id="L170">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L171">		}</span>
+<span class="nc" id="L172">		return damageType;</span>
+	}
+
+	public static String getUiKnownSpells(int type) {
+<span class="nc" id="L176">		String knownSpell = null;</span>
+<span class="nc bnc" id="L177" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L179">			System.out.println(&quot;Please tipe the player's known spell&quot;);</span>
+<span class="nc" id="L180">			break;</span>
+		case 2:
+<span class="nc" id="L182">			System.out.println(&quot;Please tipe the character's known spell&quot;);</span>
+<span class="nc" id="L183">			break;</span>
+		default:
+<span class="nc" id="L185">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L189">			knownSpell = s.next();</span>
+<span class="nc" id="L190">		} catch (Exception ex) {</span>
+<span class="nc" id="L191">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L192">		}</span>
+<span class="nc" id="L193">		return knownSpell;</span>
+	}
+
+	public static String getUiMoneyAndItems(int type) {
+<span class="nc" id="L197">		String moneyAndItem = null;</span>
+<span class="nc bnc" id="L198" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L200">			System.out.println(&quot;Please tipe the player's money and item&quot;);</span>
+<span class="nc" id="L201">			break;</span>
+		case 2:
+<span class="nc" id="L203">			System.out.println(&quot;Please tipe the character's money and item&quot;);</span>
+<span class="nc" id="L204">			break;</span>
+		default:
+<span class="nc" id="L206">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L210">			moneyAndItem = s.next();</span>
+<span class="nc" id="L211">		} catch (Exception ex) {</span>
+<span class="nc" id="L212">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L213">		}</span>
+<span class="nc" id="L214">		return moneyAndItem;</span>
+	}
+
+	public static String getUiEmail(int type) {
+<span class="nc" id="L218">		String email = null;</span>
+<span class="nc bnc" id="L219" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L221">			System.out.println(&quot;Please tipe the dungeon master's email&quot;);</span>
+<span class="nc" id="L222">			break;</span>
+		case 2:
+<span class="nc" id="L224">			System.out.println(&quot;Please tipe the player's email&quot;);</span>
+<span class="nc" id="L225">			break;</span>
+		default:
+<span class="nc" id="L227">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L231">			email = s.next();</span>
+<span class="nc" id="L232">		} catch (Exception ex) {</span>
+<span class="nc" id="L233">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L234">		}</span>
+<span class="nc" id="L235">		return email;</span>
+	}
+	
+	public static String getUiNewEmail() {
+<span class="nc" id="L239">		String email = null;</span>
+<span class="nc" id="L240">		System.out.println(&quot;Please tipe the new email&quot;);</span>
+		try {
+<span class="nc" id="L242">			email = s.next();</span>
+<span class="nc" id="L243">		} catch (Exception ex) {</span>
+<span class="nc" id="L244">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L245">		}</span>
+<span class="nc" id="L246">		return email;</span>
+	}
+	
+	public static String getUiBackgroundHistory() {
+<span class="nc" id="L250">		String backgroundHistory = null;</span>
+<span class="nc" id="L251">		System.out.println(&quot;Please tipe the character's background history.&quot;);</span>
+		try {
+<span class="nc" id="L253">			backgroundHistory = s.next();</span>
+<span class="nc" id="L254">		} catch (Exception ex) {</span>
+<span class="nc" id="L255">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L256">		}</span>
+<span class="nc" id="L257">		return backgroundHistory;</span>
+	}
+
+	public static String getUiPassword(int type) {
+<span class="nc" id="L261">		String password = null;</span>
+<span class="nc bnc" id="L262" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L264">			System.out.println(&quot;Please tipe the dungeon master's password&quot;);</span>
+<span class="nc" id="L265">			break;</span>
+		case 2:
+<span class="nc" id="L267">			System.out.println(&quot;Please tipe the player's password&quot;);</span>
+<span class="nc" id="L268">			break;</span>
+		default:
+<span class="nc" id="L270">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L274">			password = s.next();</span>
+<span class="nc" id="L275">		} catch (Exception ex) {</span>
+<span class="nc" id="L276">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L277">		}</span>
+<span class="nc" id="L278">		return password;</span>
+	}
+
+	public static int getUiLevel(int type) {
+<span class="nc" id="L282">		int level = 0;</span>
+<span class="nc bnc" id="L283" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L285">			System.out.println(&quot;Please tipe the character's level&quot;);</span>
+<span class="nc" id="L286">			break;</span>
+		case 2:
+<span class="nc" id="L288">			System.out.println(&quot;Please tipe the npc's level&quot;);</span>
+<span class="nc" id="L289">			break;</span>
+		default:
+<span class="nc" id="L291">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L295">			level = s.nextInt();</span>
+<span class="nc" id="L296">		} catch (Exception ex) {</span>
+<span class="nc" id="L297">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L298">		}</span>
+<span class="nc" id="L299">		return level;</span>
+	}
+
+	public static int getUiMagicPoints(int type) {
+<span class="nc" id="L303">		int magicPoints = 0;</span>
+<span class="nc bnc" id="L304" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L306">			System.out.println(&quot;Please tipe the character's magic points&quot;);</span>
+<span class="nc" id="L307">			break;</span>
+		case 2:
+<span class="nc" id="L309">			System.out.println(&quot;Please tipe the npc's magic points&quot;);</span>
+<span class="nc" id="L310">			break;</span>
+		default:
+<span class="nc" id="L312">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L316">			magicPoints = s.nextInt();</span>
+<span class="nc" id="L317">		} catch (Exception ex) {</span>
+<span class="nc" id="L318">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L319">		}</span>
+<span class="nc" id="L320">		return magicPoints;</span>
+	}
+
+	public static int getUiPoints(int type) {
+<span class="nc" id="L324">		int points = 0;</span>
+<span class="nc bnc" id="L325" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L327">			System.out.println(&quot;Please tipe the character's points&quot;);</span>
+<span class="nc" id="L328">			break;</span>
+		case 2:
+<span class="nc" id="L330">			System.out.println(&quot;Please tipe the npc's points&quot;);</span>
+<span class="nc" id="L331">			break;</span>
+		default:
+<span class="nc" id="L333">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L337">			points = s.nextInt();</span>
+<span class="nc" id="L338">		} catch (Exception ex) {</span>
+<span class="nc" id="L339">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L340">		}</span>
+<span class="nc" id="L341">		return points;</span>
+	}
+
+	public static int getUiStrength(int type) {
+<span class="nc" id="L345">		int strength = 0;</span>
+<span class="nc bnc" id="L346" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L348">			System.out.println(&quot;Please tipe the character's strength&quot;);</span>
+<span class="nc" id="L349">			break;</span>
+		case 2:
+<span class="nc" id="L351">			System.out.println(&quot;Please tipe the npc's strength&quot;);</span>
+<span class="nc" id="L352">			break;</span>
+		default:
+<span class="nc" id="L354">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L358">			strength = s.nextInt();</span>
+<span class="nc" id="L359">		} catch (Exception ex) {</span>
+<span class="nc" id="L360">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L361">		}</span>
+<span class="nc" id="L362">		return strength;</span>
+	}
+
+	public static int getUiDexterity(int type) {
+<span class="nc" id="L366">		int dexterity = 0;</span>
+<span class="nc bnc" id="L367" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L369">			System.out.println(&quot;Please tipe the character's dexterity&quot;);</span>
+<span class="nc" id="L370">			break;</span>
+		case 2:
+<span class="nc" id="L372">			System.out.println(&quot;Please tipe the npc's dexterity&quot;);</span>
+<span class="nc" id="L373">			break;</span>
+		default:
+<span class="nc" id="L375">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L379">			dexterity = s.nextInt();</span>
+<span class="nc" id="L380">		} catch (Exception ex) {</span>
+<span class="nc" id="L381">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L382">		}</span>
+<span class="nc" id="L383">		return dexterity;</span>
+	}
+
+	public static int getUiEndurance(int type) {
+<span class="nc" id="L387">		int endurance = 0;</span>
+<span class="nc bnc" id="L388" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L390">			System.out.println(&quot;Please tipe the character's endurance&quot;);</span>
+<span class="nc" id="L391">			break;</span>
+		case 2:
+<span class="nc" id="L393">			System.out.println(&quot;Please tipe the npc's endurance&quot;);</span>
+<span class="nc" id="L394">			break;</span>
+		default:
+<span class="nc" id="L396">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L400">			endurance = s.nextInt();</span>
+<span class="nc" id="L401">		} catch (Exception ex) {</span>
+<span class="nc" id="L402">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L403">		}</span>
+<span class="nc" id="L404">		return endurance;</span>
+	}
+
+	public static int getUiArmor(int type) {
+<span class="nc" id="L408">		int armor = 0;</span>
+<span class="nc bnc" id="L409" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L411">			System.out.println(&quot;Please tipe the character's armor&quot;);</span>
+<span class="nc" id="L412">			break;</span>
+		case 2:
+<span class="nc" id="L414">			System.out.println(&quot;Please tipe the npc's armor&quot;);</span>
+<span class="nc" id="L415">			break;</span>
+		default:
+<span class="nc" id="L417">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L421">			armor = s.nextInt();</span>
+<span class="nc" id="L422">		} catch (Exception ex) {</span>
+<span class="nc" id="L423">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L424">		}</span>
+<span class="nc" id="L425">		return armor;</span>
+	}
+
+	public static int getUiFirePower(int type) {
+<span class="nc" id="L429">		int firePower = 0;</span>
+<span class="nc bnc" id="L430" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L432">			System.out.println(&quot;Please tipe the character's firePower&quot;);</span>
+<span class="nc" id="L433">			break;</span>
+		case 2:
+<span class="nc" id="L435">			System.out.println(&quot;Please tipe the npc's firePower&quot;);</span>
+<span class="nc" id="L436">			break;</span>
+		default:
+<span class="nc" id="L438">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L442">			firePower = s.nextInt();</span>
+<span class="nc" id="L443">		} catch (Exception ex) {</span>
+<span class="nc" id="L444">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L445">		}</span>
+<span class="nc" id="L446">		return firePower;</span>
+	}
+
+	public static int getUiHitPoints(int type) {
+<span class="nc" id="L450">		int hitPoints = 0;</span>
+<span class="nc bnc" id="L451" title="All 3 branches missed.">		switch (type) {</span>
+		case 1:
+<span class="nc" id="L453">			System.out.println(&quot;Please tipe the character's hit points&quot;);</span>
+<span class="nc" id="L454">			break;</span>
+		case 2:
+<span class="nc" id="L456">			System.out.println(&quot;Please tipe the npc's hit points&quot;);</span>
+<span class="nc" id="L457">			break;</span>
+		default:
+<span class="nc" id="L459">			System.out.println(&quot;Invalid type!&quot;);</span>
+			break;
+		}
+		try {
+<span class="nc" id="L463">			hitPoints = s.nextInt();</span>
+<span class="nc" id="L464">		} catch (Exception ex) {</span>
+<span class="nc" id="L465">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L466">		}</span>
+<span class="nc" id="L467">		return hitPoints;</span>
+	}
+
+	public static int getUiExperiencePoints() {
+<span class="nc" id="L471">		int experiencePoints = 0;</span>
+<span class="nc" id="L472">		System.out.println(&quot;Please tipe the character's experience points&quot;);</span>
+		try {
+<span class="nc" id="L474">			experiencePoints = s.nextInt();</span>
+<span class="nc" id="L475">		} catch (Exception ex) {</span>
+<span class="nc" id="L476">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L477">		}</span>
+<span class="nc" id="L478">		return experiencePoints;</span>
+	}
+
+	public static String getUiPassword() {
+<span class="nc" id="L482">		String password = null;</span>
+<span class="nc" id="L483">		System.out.println(&quot;Please tipe the password&quot;);</span>
+		try {
+<span class="nc" id="L485">			password = s.next();</span>
+<span class="nc" id="L486">		} catch (Exception ex) {</span>
+<span class="nc" id="L487">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L488">		}</span>
+<span class="nc" id="L489">		return password;</span>
+	}
+	
+	public static String getUiNewPassword() {
+<span class="nc" id="L493">		String password = null;</span>
+<span class="nc" id="L494">		System.out.println(&quot;Please tipe the new password&quot;);</span>
+		try {
+<span class="nc" id="L496">			password = s.next();</span>
+<span class="nc" id="L497">		} catch (Exception ex) {</span>
+<span class="nc" id="L498">			System.out.println(&quot;Invalid entry. MSG: &quot; + ex.getMessage());</span>
+<span class="nc" id="L499">		}</span>
+<span class="nc" id="L500">		return password;</span>
+	}
+
+	@Override
+	public void checkIfUserIsAuthenticated(String userName, String password) {
+<span class="nc" id="L505">		gc.checkIfUserIsAuthenticated(userName, password);</span>
+<span class="nc" id="L506">	}</span>
+
+	@Override
+	public void createDungeonMaster(String username, String email, String password) {
+<span class="nc" id="L510">		gc.createDungeonMaster(username, email, password);</span>
+
+<span class="nc" id="L512">	}</span>
+
+	@Override
+	public void createCampaign(DungeonMaster dg, String name) {
+<span class="nc" id="L516">		gc.createCampaign(dg, name);</span>
+
+<span class="nc" id="L518">	}</span>
+
+	@Override
+	public void showCampaignDetails(Campaign campaign) {
+<span class="nc" id="L522">		gc.showCampaignDetails(campaign);</span>
+
+<span class="nc" id="L524">	}</span>
+
+	@Override
+	public void showCharacter(String player) {
+<span class="nc" id="L528">		gc.showCharacter(player);</span>
+
+<span class="nc" id="L530">	}</span>
+
+	@Override
+	public void showCharacterList(Campaign campaign) {
+<span class="nc" id="L534">		gc.showCharacterList(campaign);</span>
+
+<span class="nc" id="L536">	}</span>
+
+	@Override
+	public void showNpc(String npc) {
+<span class="nc" id="L540">		gc.showNpc(npc);</span>
+
+<span class="nc" id="L542">	}</span>
+
+	@Override
+	public void showNpcList(Campaign campaign) {
+<span class="nc" id="L546">		gc.showNpcList(campaign);</span>
+
+<span class="nc" id="L548">	}</span>
+
+	@Override
+	public void increaseCharacterHitPoints(String player, int hitPoints) {
+<span class="nc" id="L552">		gc.increaseCharacterHitPoints(player, hitPoints);</span>
+
+<span class="nc" id="L554">	}</span>
+
+	@Override
+	public void decreaseCharacterHitPoints(String player, int hitPoints) {
+<span class="nc" id="L558">		gc.decreaseCharacterHitPoints(player, hitPoints);</span>
+
+<span class="nc" id="L560">	}</span>
+
+	@Override
+	public void increaseCharacterExperience(String player, int expPoints) {
+<span class="nc" id="L564">		gc.increaseCharacterExperience(player, expPoints);</span>
+<span class="nc" id="L565">	}</span>
+
+	@Override
+	public void decreaseCharacterExperience(String player, int expPoints) {
+<span class="nc" id="L569">		gc.decreaseCharacterExperience(player, expPoints);</span>
+<span class="nc" id="L570">	}</span>
+
+	@Override
+	public void increaseCharacterLevel(String player, int level) {
+<span class="nc" id="L574">		gc.increaseCharacterLevel(player, level);</span>
+
+<span class="nc" id="L576">	}</span>
+
+	@Override
+	public void decreaseCharacterLevel(String player, int level) {
+<span class="nc" id="L580">		gc.decreaseCharacterLevel(player, level);</span>
+
+<span class="nc" id="L582">	}</span>
+
+	@Override
+	public void showInstructions() {
+<span class="nc" id="L586">		gc.showInstructions();</span>
+
+<span class="nc" id="L588">	}</span>
+
+	@Override
+	public void leaveGame() {
+<span class="nc" id="L592">		System.out.println(&quot;Leaving the system!&quot;);</span>
+<span class="nc" id="L593">		System.out.println();</span>
+<span class="nc" id="L594">	}</span>
+
+	public static void main(String[] args) {
+
+		/*
+		 * para getUiName dungeon master = 1 player = 2 character = 3 npc = 4 para
+		 * outros character = 1 , npc = 2
+		 */
+<span class="nc" id="L602">		CliUserInterface cliUserInterface = new CliUserInterface();</span>
+
+<span class="nc" id="L604">		System.out.println(&quot;Welcome to the RPG Game Manager v2&quot;);</span>
+<span class="nc" id="L605">		System.out.println();</span>
+
+<span class="nc bnc" id="L607" title="All 2 branches missed.">		while (option &lt;= 46)</span>
+
+<span class="nc bnc" id="L609" title="All 47 branches missed.">			switch (option) {</span>
+			case 1:
+<span class="nc" id="L611">				cliUserInterface.createDungeonMaster(getUiName(1), getUiEmail(1), getUiPassword(1));</span>
+<span class="nc" id="L612">				option = 0;</span>
+<span class="nc" id="L613">				break;</span>
+			case 2:
+<span class="nc" id="L615">				System.out.println(&quot;Please tipe the campaign's name&quot;);</span>
+<span class="nc" id="L616">				cliUserInterface.createCampaign(GameController.getDungeonMaster(), s.next());</span>
+<span class="nc" id="L617">				option = 0;</span>
+<span class="nc" id="L618">				break;</span>
+			case 3:
+<span class="nc" id="L620">				cliUserInterface.createPlayer(getUiName(2), getUiEmail(2), getUiPassword(2), getUiName(3),</span>
+<span class="nc" id="L621">						getUiPoints(1), getUiStrength(1), getUiDexterity(1), getUiEndurance(1), getUiArmor(1),</span>
+<span class="nc" id="L622">						getUiFirePower(1), getUiLevel(1), getUiHitPoints(1), getUiMagicPoints(1), getUiAdvantages(1),</span>
+<span class="nc" id="L623">						getUiDisadvantages(1), getUiDamageTypes(1), getUiKnownSpells(1), getUiMoneyAndItems(1));</span>
+<span class="nc" id="L624">				option = 0;</span>
+<span class="nc" id="L625">				break;</span>
+			case 4:
+<span class="nc" id="L627">				cliUserInterface.createNpc(getUiName(4), getUiPoints(2), getUiStrength(2), getUiDexterity(2),</span>
+<span class="nc" id="L628">						getUiEndurance(2), getUiArmor(2), getUiFirePower(2), getUiLevel(2), getUiHitPoints(2),</span>
+<span class="nc" id="L629">						getUiMagicPoints(2), getUiAdvantages(2), getUiDisadvantages(2), getUiDamageTypes(2),</span>
+<span class="nc" id="L630">						getUiKnownSpells(2), getUiMoneyAndItems(2));</span>
+<span class="nc" id="L631">				option = 0;</span>
+<span class="nc" id="L632">				break;</span>
+			case 5:
+<span class="nc" id="L634">				cliUserInterface.showCampaignDetails(GameController.getCampaign());</span>
+<span class="nc" id="L635">				option = 0;</span>
+<span class="nc" id="L636">				break;</span>
+			case 6:
+<span class="nc" id="L638">				cliUserInterface.showCharacter(getUiName(3));</span>
+<span class="nc" id="L639">				option = 0;</span>
+<span class="nc" id="L640">				break;</span>
+			case 7:
+<span class="nc" id="L642">				cliUserInterface.showCharacterList(GameController.getCampaign());</span>
+<span class="nc" id="L643">				option = 0;</span>
+<span class="nc" id="L644">				break;</span>
+			case 8:
+<span class="nc" id="L646">				cliUserInterface.showNpc(getUiName(4));</span>
+<span class="nc" id="L647">				option = 0;</span>
+<span class="nc" id="L648">				break;</span>
+			case 9:
+<span class="nc" id="L650">				cliUserInterface.showNpcList(GameController.getCampaign());</span>
+<span class="nc" id="L651">				option = 0;</span>
+<span class="nc" id="L652">				break;</span>
+			case 10:
+<span class="nc" id="L654">				cliUserInterface.increaseCharacterPoints(getUiName(3), getUiPoints(1));</span>
+<span class="nc" id="L655">				option = 0;</span>
+<span class="nc" id="L656">				break;</span>
+			case 11:
+<span class="nc" id="L658">				cliUserInterface.decreaseCharacterPoints(getUiName(3), getUiPoints(1));</span>
+<span class="nc" id="L659">				option = 0;</span>
+<span class="nc" id="L660">				break;</span>
+			case 12:
+<span class="nc" id="L662">				cliUserInterface.increaseCharacterStrength(getUiName(3), getUiStrength(1));</span>
+<span class="nc" id="L663">				option = 0;</span>
+<span class="nc" id="L664">				break;</span>
+			case 13:
+<span class="nc" id="L666">				cliUserInterface.decreaseCharacterStrength(getUiName(3), getUiStrength(1));</span>
+<span class="nc" id="L667">				option = 0;</span>
+<span class="nc" id="L668">				break;</span>
+			case 14:
+<span class="nc" id="L670">				cliUserInterface.increaseCharacterDexterity(getUiName(3), getUiDexterity(1));</span>
+<span class="nc" id="L671">				option = 0;</span>
+<span class="nc" id="L672">				break;</span>
+			case 15:
+<span class="nc" id="L674">				cliUserInterface.decreaseCharacterDexterity(getUiName(3), getUiDexterity(1));</span>
+<span class="nc" id="L675">				option = 0;</span>
+<span class="nc" id="L676">				break;</span>
+			case 16:
+<span class="nc" id="L678">				cliUserInterface.increaseCharacterEndurance(getUiName(3), getUiEndurance(1));</span>
+<span class="nc" id="L679">				option = 0;</span>
+<span class="nc" id="L680">				break;</span>
+			case 17:
+<span class="nc" id="L682">				cliUserInterface.decreaseCharacterEndurance(getUiName(3), getUiEndurance(1));</span>
+<span class="nc" id="L683">				option = 0;</span>
+<span class="nc" id="L684">				break;</span>
+			case 18:
+<span class="nc" id="L686">				cliUserInterface.increaseCharacterArmor(getUiName(3), getUiArmor(1));</span>
+<span class="nc" id="L687">				option = 0;</span>
+<span class="nc" id="L688">				break;</span>
+			case 19:
+<span class="nc" id="L690">				cliUserInterface.decreaseCharacterArmor(getUiName(3), getUiArmor(1));</span>
+<span class="nc" id="L691">				option = 0;</span>
+<span class="nc" id="L692">				break;</span>
+			case 20:
+<span class="nc" id="L694">				cliUserInterface.increaseCharacterFirePower(getUiName(3), getUiFirePower(1));</span>
+<span class="nc" id="L695">				option = 0;</span>
+<span class="nc" id="L696">				break;</span>
+			case 21:
+<span class="nc" id="L698">				cliUserInterface.decreaseCharacterFirePower(getUiName(3), getUiFirePower(1));</span>
+<span class="nc" id="L699">				option = 0;</span>
+<span class="nc" id="L700">				break;</span>
+			case 22:
+<span class="nc" id="L702">				cliUserInterface.increaseCharacterLevel(getUiName(3), getUiLevel(1));</span>
+<span class="nc" id="L703">				option = 0;</span>
+<span class="nc" id="L704">				break;</span>
+			case 23:
+<span class="nc" id="L706">				cliUserInterface.decreaseCharacterLevel(getUiName(3), getUiLevel(1));</span>
+<span class="nc" id="L707">				option = 0;</span>
+<span class="nc" id="L708">				break;</span>
+			case 24:
+<span class="nc" id="L710">				cliUserInterface.increaseCharacterHitPoints(getUiName(3), getUiHitPoints(1));</span>
+<span class="nc" id="L711">				option = 0;</span>
+<span class="nc" id="L712">				break;</span>
+			case 25:
+<span class="nc" id="L714">				cliUserInterface.decreaseCharacterHitPoints(getUiName(3), getUiHitPoints(1));</span>
+<span class="nc" id="L715">				option = 0;</span>
+<span class="nc" id="L716">				break;</span>
+			case 26:
+<span class="nc" id="L718">				cliUserInterface.increaseCharacterMagicPoints(getUiName(3), getUiMagicPoints(1));</span>
+<span class="nc" id="L719">				option = 0;</span>
+<span class="nc" id="L720">				break;</span>
+			case 27:
+<span class="nc" id="L722">				cliUserInterface.decreaseCharacterMagicPoints(getUiName(3), getUiMagicPoints(1));</span>
+<span class="nc" id="L723">				option = 0;</span>
+<span class="nc" id="L724">				break;</span>
+			case 28:
+<span class="nc" id="L726">				cliUserInterface.increaseCharacterAdvantages(getUiName(3), getUiAdvantages(1));</span>
+<span class="nc" id="L727">				option = 0;</span>
+<span class="nc" id="L728">				break;</span>
+			case 29:
+<span class="nc" id="L730">				cliUserInterface.decreaseCharacterAdvantages(getUiName(3), getUiAdvantages(1));</span>
+<span class="nc" id="L731">				option = 0;</span>
+<span class="nc" id="L732">				break;</span>
+			case 30:
+<span class="nc" id="L734">				cliUserInterface.increaseCharacterDisadvantages(getUiName(3), getUiDisadvantages(1));</span>
+<span class="nc" id="L735">				option = 0;</span>
+<span class="nc" id="L736">				break;</span>
+			case 31:
+<span class="nc" id="L738">				cliUserInterface.decreaseCharacterDisadvantages(getUiName(3), getUiDisadvantages(1));</span>
+<span class="nc" id="L739">				option = 0;</span>
+<span class="nc" id="L740">				break;</span>
+			case 32:
+<span class="nc" id="L742">				cliUserInterface.increaseCharacterDamageTypes(getUiName(3), getUiDamageTypes(1));</span>
+<span class="nc" id="L743">				option = 0;</span>
+<span class="nc" id="L744">				break;</span>
+			case 33:
+<span class="nc" id="L746">				cliUserInterface.decreaseCharacterDamageTypes(getUiName(3), getUiDamageTypes(1));</span>
+<span class="nc" id="L747">				option = 0;</span>
+<span class="nc" id="L748">				break;</span>
+			case 34:
+<span class="nc" id="L750">				cliUserInterface.increaseCharacterKnownSpells(getUiName(3), getUiKnownSpells(1));</span>
+<span class="nc" id="L751">				option = 0;</span>
+<span class="nc" id="L752">				break;</span>
+			case 35:
+<span class="nc" id="L754">				cliUserInterface.decreaseCharacterKnownSpells(getUiName(3), getUiKnownSpells(1));</span>
+<span class="nc" id="L755">				option = 0;</span>
+<span class="nc" id="L756">				break;</span>
+			case 36:
+<span class="nc" id="L758">				cliUserInterface.increaseCharacterMoneyAndItems(getUiName(3), getUiMoneyAndItems(1));</span>
+<span class="nc" id="L759">				option = 0;</span>
+<span class="nc" id="L760">				break;</span>
+			case 37:
+<span class="nc" id="L762">				cliUserInterface.decreaseCharacterMoneyAndItems(getUiName(3), getUiMoneyAndItems(1));</span>
+<span class="nc" id="L763">				option = 0;</span>
+<span class="nc" id="L764">				break;</span>
+			case 38:
+<span class="nc" id="L766">				cliUserInterface.increaseCharacterExperience(getUiName(3), getUiExperiencePoints());</span>
+<span class="nc" id="L767">				option = 0;</span>
+<span class="nc" id="L768">				break;</span>
+			case 39:
+<span class="nc" id="L770">				cliUserInterface.decreaseCharacterExperience(getUiName(3), getUiExperiencePoints());</span>
+<span class="nc" id="L771">				option = 0;</span>
+<span class="nc" id="L772">				break;</span>
+			case 40:
+<span class="nc" id="L774">				cliUserInterface.generateCharacterBackgroundHistory(getUiName(3), getUiBackgroundHistory());</span>
+<span class="nc" id="L775">				option = 0;</span>
+<span class="nc" id="L776">				break;</span>
+			case 41:
+<span class="nc" id="L778">				cliUserInterface.checkIfUserIsAuthenticated(getUiName(2), getUiPassword());</span>
+<span class="nc" id="L779">				option = 0;</span>
+<span class="nc" id="L780">				break;</span>
+			case 42:
+<span class="nc" id="L782">				cliUserInterface.checkIfUserIsAuthenticated(getUiName(1), getUiPassword());</span>
+<span class="nc" id="L783">				option = 0;</span>
+<span class="nc" id="L784">				break;</span>
+			case 43:
+<span class="nc" id="L786">				cliUserInterface.changeEmail(getUiName(2), getUiEmail(2), getUiNewEmail());</span>
+<span class="nc" id="L787">				option = 0;</span>
+<span class="nc" id="L788">				break;</span>
+			case 44:
+<span class="nc" id="L790">				cliUserInterface.changePassword(getUiName(2), getUiPassword(), getUiNewPassword());</span>
+<span class="nc" id="L791">				option = 0;</span>
+<span class="nc" id="L792">				break;</span>
+			case 45:
+<span class="nc" id="L794">				cliUserInterface.showInstructions();</span>
+<span class="nc" id="L795">				option = 0;</span>
+<span class="nc" id="L796">				break;</span>
+			case 46:
+<span class="nc" id="L798">				cliUserInterface.leaveGame();</span>
+<span class="nc" id="L799">				option = 47;</span>
+<span class="nc" id="L800">				break;</span>
+			default:
+<span class="nc" id="L802">				menu();</span>
+<span class="nc" id="L803">				break;</span>
+			}
+
+<span class="nc" id="L806">	}</span>
+
+	@Override
+	public void changeEmail(String user, String email, String newEmail) {
+<span class="nc" id="L810">		gc.changeEmail(user, email, newEmail);</span>
+
+<span class="nc" id="L812">	}</span>
+
+	@Override
+	public void changePassword(String user, String password, String newPassword) {
+<span class="nc" id="L816">		gc.changePassword(user, password, newPassword);</span>
+
+<span class="nc" id="L818">	}</span>
+
+	@Override
+	public void createPlayer(String playerName, String playerEmail, String playerPassword, String characterName,
+			int characterPoints, int characterStrength, int characterDexterity, int characterEndurance,
+			int characterArmor, int characterFirepower, int characterLevel, int characterHitPoints,
+			int characterMagicPoints, String characterAdvantages, String characterDisadvantages,
+			String characterDamageTypes, String characterKnownSpells, String characterMoneyAndItems) {
+
+<span class="nc" id="L827">		Set&lt;String&gt; setAdvantages = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L828">		Set&lt;String&gt; setDisadvantages = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L829">		Set&lt;String&gt; setDamageTypes = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L830">		Set&lt;String&gt; setKnownSpells = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L831">		Set&lt;String&gt; setMoneyAndItems = new HashSet&lt;String&gt;();</span>
+
+<span class="nc" id="L833">		setAdvantages.add(characterDisadvantages);</span>
+<span class="nc" id="L834">		setDisadvantages.add(characterDisadvantages);</span>
+<span class="nc" id="L835">		setDamageTypes.add(characterDamageTypes);</span>
+<span class="nc" id="L836">		setKnownSpells.add(characterKnownSpells);</span>
+<span class="nc" id="L837">		setMoneyAndItems.add(characterMoneyAndItems);</span>
+
+<span class="nc" id="L839">		gc.createPlayer(playerName, playerEmail, playerPassword, characterName, characterPoints, characterStrength,</span>
+				characterDexterity, characterEndurance, characterArmor, characterFirepower, characterLevel,
+				characterHitPoints, characterMagicPoints, setAdvantages, setDisadvantages, setDamageTypes,
+				setKnownSpells, setMoneyAndItems);
+
+<span class="nc" id="L844">	}</span>
+
+	@Override
+	public void createNpc(String npcName, int npcPoints, int npcStrength, int npcDexterity, int npcEndurance,
+			int npcArmor, int npcFirepower, int npcLevel, int npcHitPoints, int npcMagicPoints, String npcAdvantages,
+			String npcDisadvantages, String npcDamageTypes, String npcKnownSpells, String npcMoneyAndItems) {
+
+<span class="nc" id="L851">		Set&lt;String&gt; setAdvantages = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L852">		Set&lt;String&gt; setDisadvantages = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L853">		Set&lt;String&gt; setDamageTypes = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L854">		Set&lt;String&gt; setKnownSpells = new HashSet&lt;String&gt;();</span>
+<span class="nc" id="L855">		Set&lt;String&gt; setMoneyAndItems = new HashSet&lt;String&gt;();</span>
+
+<span class="nc" id="L857">		setAdvantages.add(npcAdvantages);</span>
+<span class="nc" id="L858">		setDisadvantages.add(npcDisadvantages);</span>
+<span class="nc" id="L859">		setDamageTypes.add(npcDamageTypes);</span>
+<span class="nc" id="L860">		setKnownSpells.add(npcKnownSpells);</span>
+<span class="nc" id="L861">		setMoneyAndItems.add(npcMoneyAndItems);</span>
+
+<span class="nc" id="L863">		GameController.getCampaign().populateNpcList(npcName, npcPoints, npcStrength, npcDexterity, npcEndurance,</span>
+				npcArmor, npcFirepower, npcLevel, npcHitPoints, npcMagicPoints, setAdvantages, setDisadvantages,
+				setDamageTypes, setKnownSpells, setMoneyAndItems);
+
+<span class="nc" id="L867">	}</span>
+
+	@Override
+	public void increaseCharacterPoints(String player, int points) {
+<span class="nc" id="L871">		gc.increaseCharacterPoints(player, points);</span>
+
+<span class="nc" id="L873">	}</span>
+
+	@Override
+	public void decreaseCharacterPoints(String player, int points) {
+<span class="nc" id="L877">		gc.decreaseCharacterPoints(player, points);</span>
+
+<span class="nc" id="L879">	}</span>
+
+	@Override
+	public void increaseCharacterStrength(String player, int strength) {
+<span class="nc" id="L883">		gc.increaseCharacterStrength(player, strength);</span>
+
+<span class="nc" id="L885">	}</span>
+
+	@Override
+	public void decreaseCharacterStrength(String player, int strength) {
+<span class="nc" id="L889">		gc.decreaseCharacterStrength(player, strength);</span>
+
+<span class="nc" id="L891">	}</span>
+
+	@Override
+	public void increaseCharacterDexterity(String player, int dexterity) {
+<span class="nc" id="L895">		gc.increaseCharacterDexterity(player, dexterity);</span>
+
+<span class="nc" id="L897">	}</span>
+
+	@Override
+	public void decreaseCharacterDexterity(String player, int dexterity) {
+<span class="nc" id="L901">		gc.decreaseCharacterDexterity(player, dexterity);</span>
+
+<span class="nc" id="L903">	}</span>
+
+	@Override
+	public void increaseCharacterEndurance(String player, int endurance) {
+<span class="nc" id="L907">		gc.increaseCharacterEndurance(player, endurance);</span>
+
+<span class="nc" id="L909">	}</span>
+
+	@Override
+	public void decreaseCharacterEndurance(String player, int endurance) {
+<span class="nc" id="L913">		gc.decreaseCharacterEndurance(player, endurance);</span>
+
+<span class="nc" id="L915">	}</span>
+
+	@Override
+	public void increaseCharacterArmor(String player, int armor) {
+<span class="nc" id="L919">		gc.increaseCharacterArmor(player, armor);</span>
+
+<span class="nc" id="L921">	}</span>
+
+	@Override
+	public void decreaseCharacterArmor(String player, int armor) {
+<span class="nc" id="L925">		gc.decreaseCharacterArmor(player, armor);</span>
+
+<span class="nc" id="L927">	}</span>
+
+	@Override
+	public void increaseCharacterFirePower(String player, int firePower) {
+<span class="nc" id="L931">		gc.increaseCharacterFirePower(player, firePower);</span>
+
+<span class="nc" id="L933">	}</span>
+
+	@Override
+	public void decreaseCharacterFirePower(String player, int firePower) {
+<span class="nc" id="L937">		gc.decreaseCharacterFirePower(player, firePower);</span>
+
+<span class="nc" id="L939">	}</span>
+
+	@Override
+	public void increaseCharacterMagicPoints(String player, int magicPoints) {
+<span class="nc" id="L943">		gc.increaseCharacterMagicPoints(player, magicPoints);</span>
+
+<span class="nc" id="L945">	}</span>
+
+	@Override
+	public void decreaseCharacterMagicPoints(String player, int magicPoints) {
+<span class="nc" id="L949">		gc.decreaseCharacterMagicPoints(player, magicPoints);</span>
+
+<span class="nc" id="L951">	}</span>
+
+	@Override
+	public void increaseCharacterAdvantages(String player, String advantages) {
+<span class="nc" id="L955">		gc.increaseCharacterAdvantages(player, advantages);</span>
+
+<span class="nc" id="L957">	}</span>
+
+	@Override
+	public void decreaseCharacterAdvantages(String player, String advantages) {
+<span class="nc" id="L961">		gc.decreaseCharacterAdvantages(player, advantages);</span>
+
+<span class="nc" id="L963">	}</span>
+
+	@Override
+	public void increaseCharacterDisadvantages(String player, String disadvantages) {
+<span class="nc" id="L967">		gc.increaseCharacterDisadvantages(player, disadvantages);</span>
+
+<span class="nc" id="L969">	}</span>
+
+	@Override
+	public void decreaseCharacterDisadvantages(String player, String disadvantages) {
+<span class="nc" id="L973">		gc.decreaseCharacterDisadvantages(player, disadvantages);</span>
+
+<span class="nc" id="L975">	}</span>
+
+	@Override
+	public void increaseCharacterDamageTypes(String player, String damageTypes) {
+<span class="nc" id="L979">		gc.increaseCharacterDamageTypes(player, damageTypes);</span>
+
+<span class="nc" id="L981">	}</span>
+
+	@Override
+	public void decreaseCharacterDamageTypes(String player, String damageTypes) {
+<span class="nc" id="L985">		gc.decreaseCharacterDamageTypes(player, damageTypes);</span>
+
+<span class="nc" id="L987">	}</span>
+
+	@Override
+	public void increaseCharacterKnownSpells(String player, String knownSpells) {
+<span class="nc" id="L991">		gc.increaseCharacterKnownSpells(player, knownSpells);</span>
+
+<span class="nc" id="L993">	}</span>
+
+	@Override
+	public void decreaseCharacterKnownSpells(String player, String knownSpells) {
+<span class="nc" id="L997">		gc.decreaseCharacterKnownSpells(player, knownSpells);</span>
+
+<span class="nc" id="L999">	}</span>
+
+	@Override
+	public void increaseCharacterMoneyAndItems(String player, String moneyAndItems) {
+<span class="nc" id="L1003">		gc.increaseCharacterMoneyAndItems(player, moneyAndItems);</span>
+
+<span class="nc" id="L1005">	}</span>
+
+	@Override
+	public void decreaseCharacterMoneyAndItems(String player, String moneyAndItems) {
+<span class="nc" id="L1009">		gc.decreaseCharacterMoneyAndItems(player, moneyAndItems);</span>
+
+<span class="nc" id="L1011">	}</span>
+
+	@Override
+	public void generateCharacterBackgroundHistory(String player, String backgroundHistory) {
+<span class="nc" id="L1015">		gc.generateCharacterBackgroundHistory(player, backgroundHistory);</span>
+
+<span class="nc" id="L1017">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

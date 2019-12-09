@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg-campaign-maven</a> &gt; <a href="index.source.html" class="el_package">rpg.campaign.maven.user</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package rpg.campaign.maven.user;
+
+/**
+ * 
+ * The Abstract Class User represents a user. The user contains a user name, an
+ * email and a password.
+ * 
+ * A user might be of two types: Player or Dungeon Master. The Player is a User
+ * that have a character and cannot interact with campaign. The Dungeon Master
+ * is a user that have a campaign and is able to change every campaign detail.
+ * 
+ * The class User is also responsible to verify if the user is authenticated,
+ * change user's email and change user's password.
+ * 
+ * @author jonas
+ * @since 02/10/2019
+ * @version 1.4
+ *
+ */
+public abstract class User {
+
+	private String username;
+	private String email;
+	private String password;
+
+	/**
+	 * This is the class constructor. It is responsible to initialize variables user
+	 * name, email and password when a user is created.
+	 * 
+	 * @param username String
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+<span class="nc" id="L36">	public User(String username, String email, String password) {</span>
+<span class="nc" id="L37">		this.username = username;</span>
+<span class="nc" id="L38">		this.email = email;</span>
+<span class="nc" id="L39">		this.password = password;</span>
+<span class="nc" id="L40">	}</span>
+
+	/**
+	 * Method getUserName(). Responsible to get user's name.
+	 * 
+	 * @return String name
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public String getUserName() {
+<span class="nc" id="L52">		return username;</span>
+	}
+
+	/**
+	 * Method getEmail(). Responsible to get user's email.
+	 * 
+	 * @return String email
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public String getEmail() {
+<span class="nc" id="L65">		return email;</span>
+	}
+
+	/**
+	 * Method getPassword(). Responsible to get user's password.
+	 * 
+	 * @return String password
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public String getPassword() {
+<span class="nc" id="L78">		return password;</span>
+	}
+
+	/**
+	 * Method changeEmail(). Responsible to change user's email.
+	 * 
+	 * @param email    String
+	 * @param newEmail String
+	 * 
+	 * @return boolean
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public boolean changeEmail(String email, String newEmail) {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (this.getEmail().equals(email)) {</span>
+<span class="nc" id="L95">			this.email = newEmail;</span>
+<span class="nc" id="L96">			return true;</span>
+		}
+<span class="nc" id="L98">		return false;</span>
+	}
+
+	/**
+	 * Method isAuthenticated(). Responsible to check if user has access to the
+	 * game.
+	 * 
+	 * @param password String
+	 * 
+	 * @return boolean
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public boolean isAuthenticated(String password) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		return this.password.equals(password) ? true : false;</span>
+	}
+
+	/**
+	 * Method changePassword(). Responsible to change user's password.
+	 * 
+	 * @param password    String
+	 * @param newPassword String
+	 * 
+	 * @return boolean
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public boolean changePassword(String password, String newPassword) {
+<span class="nc bnc" id="L130" title="All 2 branches missed.">		if (this.password.equals(password)) {</span>
+<span class="nc" id="L131">			this.password = newPassword;</span>
+<span class="nc" id="L132">			return true;</span>
+		}
+<span class="nc" id="L134">		return false;</span>
+	}
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,11 @@
+rpg\campaign\maven\user\User.class
+rpg\campaign\maven\campaign\Campaign.class
+rpg\campaign\maven\character\PlayableCharacter.class
+rpg\campaign\maven\App.class
+rpg\campaign\maven\test\CliUserInterface.class
+rpg\campaign\maven\controller\GameController.class
+rpg\campaign\maven\character\Character.class
+rpg\campaign\maven\character\NonPlayableCharacter.class
+rpg\campaign\maven\ui\UserInterface.class
+rpg\campaign\maven\user\DungeonMaster.class
+rpg\campaign\maven\user\Player.class

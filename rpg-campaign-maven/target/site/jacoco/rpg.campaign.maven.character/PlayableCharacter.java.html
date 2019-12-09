@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayableCharacter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg-campaign-maven</a> &gt; <a href="index.source.html" class="el_package">rpg.campaign.maven.character</a> &gt; <span class="el_source">PlayableCharacter.java</span></div><h1>PlayableCharacter.java</h1><pre class="source lang-java linenums">package rpg.campaign.maven.character;
+
+import java.util.Set;
+
+/**
+ * 
+ * The Class PlayableCharacter extends the class Character and represents a
+ * character owned by a player. It is created and used by the Player, and
+ * contains the implementation of super class constructor and abstract methods,
+ * and also the methods to increase and decrease the experience points, that are
+ * exclusive characteristics of playable character.
+ * 
+ * @author jonas
+ * @version 1.4
+ * @since 02/10/2019
+ *
+ */
+public class PlayableCharacter extends Character {
+
+	private int experiencePoints;
+	private String backgroundHistory;
+
+	/**
+	 * This is the class constructor. It only invokes the super constructor.
+	 * 
+	 * @param name      String
+	 * @param level     int
+	 * @param hitPoints int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 * 
+	 */
+	public PlayableCharacter(String name, int points, int strength, int dexterity, int endurance, int armor,
+			int firePower, int level, int hitPoints, int magicPoints, Set&lt;String&gt; advantages, Set&lt;String&gt; disadvantages,
+			Set&lt;String&gt; damageTypes, Set&lt;String&gt; knownSpells, Set&lt;String&gt; moneyAndItems) {
+		
+<span class="nc" id="L38">		super(name, points, strength, dexterity, endurance, armor, firePower, level, hitPoints, magicPoints, advantages,</span>
+				disadvantages, damageTypes, knownSpells, moneyAndItems);
+
+<span class="nc" id="L41">	}</span>
+
+	/**
+	 * Method printSpreadsheat(). This is the implementation of abstract method of
+	 * super class Character. It is responsible to show the playable character
+	 * statistics.
+	 * 
+	 * @return String spreadsheat
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 * 
+	 */
+	public StringBuilder printSpreadsheat() {
+
+<span class="nc" id="L56">		StringBuilder spreadsheat = new StringBuilder();</span>
+<span class="nc" id="L57">		spreadsheat.append(&quot;[ Character Spreadsheat ] &quot; + &quot; \n&quot;);</span>
+<span class="nc" id="L58">		spreadsheat.append(&quot;- Name: &quot; + this.getName() + &quot;\n&quot;);</span>
+<span class="nc" id="L59">		spreadsheat.append(&quot;- Points: &quot; + this.getPoints() + &quot;\n&quot;);</span>
+<span class="nc" id="L60">		spreadsheat.append(&quot;- Strength: &quot; + this.getStrength() + &quot;\n&quot;);</span>
+<span class="nc" id="L61">		spreadsheat.append(&quot;- Dexterity: &quot; + this.getDexterity() + &quot;\n&quot;);</span>
+<span class="nc" id="L62">		spreadsheat.append(&quot;- Endurance: &quot; + this.getEndurance() + &quot;\n&quot;);</span>
+<span class="nc" id="L63">		spreadsheat.append(&quot;- Armor: &quot; + this.getArmor() + &quot;\n&quot;);</span>
+<span class="nc" id="L64">		spreadsheat.append(&quot;- Fire Power: &quot; + this.getFirePower() + &quot;\n&quot;);</span>
+<span class="nc" id="L65">		spreadsheat.append(&quot;- Level: &quot; + this.getLevel() + &quot;\n&quot;);</span>
+<span class="nc" id="L66">		spreadsheat.append(&quot;- Hit Points: &quot; + this.getHitPoints() + &quot;\n&quot;);</span>
+<span class="nc" id="L67">		spreadsheat.append(&quot;- Magic Points: &quot; + this.getMagicPoints() + &quot;\n&quot;);</span>
+<span class="nc" id="L68">		spreadsheat.append(&quot;- Advantages: &quot; + this.getAdvantages() + &quot;\n&quot;);</span>
+<span class="nc" id="L69">		spreadsheat.append(&quot;- Disadvantages: &quot; + this.getDisadvangates() + &quot;\n&quot;);</span>
+<span class="nc" id="L70">		spreadsheat.append(&quot;- Damage Types: &quot; + this.getDamageTypes() + &quot;\n&quot;);</span>
+<span class="nc" id="L71">		spreadsheat.append(&quot;- Known Spells: &quot; + this.getKnownSpells() + &quot;\n&quot;);</span>
+<span class="nc" id="L72">		spreadsheat.append(&quot;- Money And Items: &quot; + this.getMoneyAndItems() + &quot;\n&quot;);</span>
+<span class="nc" id="L73">		spreadsheat.append(&quot;- Experience Points: &quot; + this.getExperiencePoints() + &quot;\n&quot;);</span>
+<span class="nc" id="L74">		spreadsheat.append(&quot;- Background History: &quot; + this.getBackgroundHistory());</span>
+
+<span class="nc" id="L76">		return spreadsheat;</span>
+	}
+
+	/**
+	 * Method getExperiencePoints(). Responsible to get character's experience
+	 * points.
+	 * 
+	 * @return int experiencePoints
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public int getExperiencePoints() {
+<span class="nc" id="L90">		return experiencePoints;</span>
+	}
+
+	/**
+	 * Method increaseExperiencePoints(). Responsible to increase character's
+	 * experience points.
+	 * 
+	 * @param experiencePointsToIncrease int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void increaseExperiencePoints(int experiencePointsToIncrease) {
+<span class="nc" id="L104">		this.experiencePoints += experiencePointsToIncrease;</span>
+<span class="nc" id="L105">	}</span>
+
+	/**
+	 * Method decreaseExperiencePoints(). Responsible to decrease character's
+	 * experience points.
+	 * 
+	 * @param experiencePointsToDecrease int
+	 * 
+	 * @author jonas
+	 * @since 07/10/2019
+	 *
+	 */
+	public void decreaseExperiencePoints(int experiencePointsToDecrease) {
+<span class="nc" id="L118">		this.experiencePoints -= experiencePointsToDecrease;</span>
+<span class="nc" id="L119">	}</span>
+
+	/**
+	 * Method getHistory(). Responsible to get character's history.
+	 * 
+	 * @return String history
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public String getBackgroundHistory() {
+<span class="nc" id="L131">		return backgroundHistory;</span>
+	}
+	
+	/**
+	 * Method setBackgroundHistory(). Responsible to set character's history.
+	 * 
+	 * @param backgroundHistory String
+	 * 
+	 * @author jonas
+	 * @since 07/12/2019
+	 *
+	 */
+	public void setBackgroundHistory(String backgroundHistory) {
+<span class="nc" id="L144">		this.backgroundHistory = backgroundHistory;</span>
+<span class="nc" id="L145">	}</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
